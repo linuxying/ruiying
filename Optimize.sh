@@ -159,6 +159,7 @@ EOF
 }
 
 #Close unused service
+#注意此处有的是显示英文on，有的显示的是启用
 service_config(){
 for un_service in `chkconfig --list|grep 3:启用|awk '{print $1}'`
 do
@@ -181,6 +182,7 @@ echo "test   ALL=(ALL)  NOPASSWD: ALL">>/etc/sudoers
 mkdir /home/test/tools -p
 mkdir /data 
 mkdir /backup
+mkdir -p /server/script
 }
 
 #ok
