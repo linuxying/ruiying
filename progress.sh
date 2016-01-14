@@ -1,6 +1,6 @@
 #!/bin/sh
 
-#print progess
+#print progess script
 
 
 b=''
@@ -11,3 +11,4 @@ do
         b=#$b
 done
 echo
+
