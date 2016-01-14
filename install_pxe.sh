@@ -65,5 +65,7 @@ cat >/etc/dhcp/dhcpd.conf<<EOF
     }   
 <<EOF
 }
+#################################################
+
 
 #4.5 kisckstart
