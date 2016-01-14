@@ -63,9 +63,8 @@ cat >/etc/dhcp/dhcpd.conf<<EOF
     next-server 10.0.0.4;
     filename "/var/lib/tftpboot/pxelinux.0";
     }   
-<<EOF
+EOF
 }
-#################################################
 
 
 #4.5 kisckstart
