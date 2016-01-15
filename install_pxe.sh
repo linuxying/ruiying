@@ -64,7 +64,17 @@ cat >/etc/dhcp/dhcpd.conf<<EOF
     filename "/var/lib/tftpboot/pxelinux.0";
     }   
 EOF
+    /etc/init.d/dhcpd start
+    chkconfig dhcpd on
+    echo "/etc/init.d/dhcpd start">>/etc/rc.local
 }
 
 
 #4.5 kisckstart
+#config kisckstart
+Kisckstart(){
+    cd ~
+    mkdir /data/sys/kickstart
+    cp anaconda-ks.cfg /data/sys/kickstart/ks.cfg
+    chmod 644 /data/sys/kickstart/ks.cfg 
+}
