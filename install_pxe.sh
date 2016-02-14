@@ -76,8 +76,10 @@ EOF
 #4.5 kisckstart
 #config kisckstart
 Kisckstart(){
-    cd ~
+    wget https://github.com/linuxying/ruiying/archive/master.zip
+    unzip master.zip
+    cd ruiying-master
     mkdir /data/sys/kickstart
-    cp anaconda-ks.cfg /data/sys/kickstart/ks.cfg
+    cp ks.cfg /data/sys/kickstart/ks.cfg
     chmod 644 /data/sys/kickstart/ks.cfg 
 }
