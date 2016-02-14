@@ -22,6 +22,8 @@ install_nfs(){
     /etc/init.d/nfs start
     chkconfig nfs on
     chkconfig rpcbind on
+    echo "/etc/init.d/rpcbind start">>/etc/rc.local #此步骤目的方便看此台服务器上有多少服务，方便重启之后维护。
+    echo "/etc/init.d/nfs start">>/etc/rc.local
     echo "nfs installation completed."
     sleep 5
 }
@@ -32,6 +34,7 @@ install_tftp(){
     yum install -y tftp-server
     sed -i "s/`grep "disable" \/etc\/xinetd.d\/tftp`/disable = no/g" /etc/xinetd.d/tftp 
     /etc/init.d/xinetd start
+    echo "/etc/init.d/xinetd start">>/etc/rc.local
     chkconfig xinetd on
 }
 
