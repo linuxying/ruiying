@@ -1,6 +1,16 @@
-#!/bin/sh
+#!/bin/sh
 #author:linuxliu
 #mail:512331228@qq.com
+
+#make sure only root can run our script
+rootness(){
+   if [[ $UID -ne 0 ]]
+   then
+       echo "Error:This script must be run as root!" 1>&2
+       exit 1
+   fi
+}
+
 
 
 #install nfs
@@ -15,6 +25,7 @@ install_nfs(){
     else
         echo "/data/sys space is little than OS file"
         exit
+    fi
 
     if [ `rpm -qa|grep nfs|wc -l` = 0 ]
     then
@@ -31,7 +42,7 @@ install_nfs(){
     chkconfig rpcbind on
     echo "/etc/init.d/rpcbind start">>/etc/rc.local #此步骤目的方便看此台服务器上有多少服务，方便重启之后维护。
     echo "/etc/init.d/nfs start">>/etc/rc.local
-    echo "nfs installation completed."
+    echo "nfs installation completed." >>/data/sys/install_log.txt
     sleep 5
 }
 
@@ -92,9 +103,9 @@ Kisckstart(){
 }
 
 
-
+rootness
 install_nfs
-install_tftp
-install_boot
-install_dhcp
-Kisckstart
+#install_tftp
+#install_boot
+#install_dhcp
+#Kisckstart
