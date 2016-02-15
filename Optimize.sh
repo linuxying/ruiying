@@ -159,9 +159,9 @@ EOF
 }
 
 #Close unused service
-#×¢Òâ´Ë´¦ÓĞµÄÊÇÏÔÊ¾Ó¢ÎÄon£¬ÓĞµÄÏÔÊ¾µÄÊÇÆôÓÃ
+#æ³¨æ„æ­¤å¤„æœ‰çš„æ˜¯æ˜¾ç¤ºè‹±æ–‡onï¼Œæœ‰çš„æ˜¾ç¤ºçš„æ˜¯å¯ç”¨
 service_config(){
-for un_service in `chkconfig --list|grep 3:ÆôÓÃ|awk '{print $1}'`
+for un_service in `chkconfig --list|grep 3:å¯ç”¨|awk '{print $1}'`
 do
     chkconfig ${un_service} off
 done
@@ -173,7 +173,7 @@ done
 
 #other config 
 other_config(){
-#useradd 
+#useradd æ³¨æ„æ­¤å¤„testä¿®æ”¹ä¸ºä½ è‡ªå·±çš„ç”¨æˆ·åå’Œå¯†ç 
 useradd test
 echo "test"|passwd --stdin test && history -c
 echo "test   ALL=(ALL)  NOPASSWD: ALL">>/etc/sudoers
