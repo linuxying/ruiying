@@ -66,17 +66,17 @@ install_boot(){
 install_dhcp(){
     yum install -y dhcp 
 cat >/etc/dhcp/dhcpd.conf<<EOF
-    ddns-update-style none;
-    default-lease-time 600;
-    max-lease-time 7200;
-    log-facility local7;
-    subnet 10.0.0.0 netmask 255.255.255.0 {
-    range dynamic-bootp 10.0.0.100 10.0.0.200;
-    next-server 10.0.0.5;
-    filename "/data/sys/kickstart/ks.cfg";
-    next-server 10.0.0.5;
-    filename "/var/lib/tftpboot/pxelinux.0";
-    }   
+ddns-update-style none;
+default-lease-time 600;
+max-lease-time 7200;
+log-facility local7;
+subnet 10.0.0.0 netmask 255.255.255.0 {
+range dynamic-bootp 10.0.0.100 10.0.0.200;
+next-server 10.0.0.5;
+filename "/data/sys/kickstart/ks.cfg";
+next-server 10.0.0.5;
+filename "/var/lib/tftpboot/pxelinux.0";
+}   
 EOF
     /etc/init.d/dhcpd start
     chkconfig dhcpd on
@@ -95,10 +95,21 @@ Kisckstart(){
     chmod 644 /data/sys/kickstart/ks.cfg 
 }
 
+Restart(){
+  /etc/init.d/rpcbind restart
+  /etc/init.d/nfs restart
+  /etc/init.d/xinetd restart
+  /etc/init.d/dhcpd restart
+}
 
-rootness
-install_nfs
-install_tftp
-install_boot
-install_dhcp
-Kisckstart
+main(){
+    rootness
+    install_nfs
+    install_tftp
+    install_boot
+    install_dhcp
+    Kisckstart
+    Restart
+}
+
+main
