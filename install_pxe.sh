@@ -40,7 +40,7 @@ install_nfs(){
     /etc/init.d/nfs start
     chkconfig nfs on
     chkconfig rpcbind on
-    echo "/etc/init.d/rpcbind start">>/etc/rc.local #此步骤目的方便看此台服务器上有多少服务，方便重启之后维护。
+    echo "/etc/init.d/rpcbind start">>/etc/rc.local 
     echo "/etc/init.d/nfs start">>/etc/rc.local
     echo "nfs installation completed." >>/data/sys/install_log.txt
     sleep 5
