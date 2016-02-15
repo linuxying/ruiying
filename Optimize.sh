@@ -83,7 +83,7 @@ sleep 1
 update_time(){
 echo -e "\033[32m update time\033[0m "
 echo "*/5 * * * * /usr/sbin/ntpdate time.windows.com > /dev/null 2>&1 " >>/var/spool/cron/root
-/etc/init.d/cron restart
+/etc/init.d/crond restart
 }
 
 
