@@ -17,15 +17,7 @@ rootness(){
 install_nfs(){
     [ ! -d /data/sys ] && mkdir -p /data/sys/
     mount /dev/cdrom /mnt/
-    DirSize=`df -lh /data/sys/|grep G|awk '{print $2}'|awk -F 'G' '{print $1}'`
-    if [ $DirSize -ge 10 ]
-    then
-        echo -e "\033[32mNotie:This process takes a few miuntes,please be patient. \033[0m"
-        cp -a /mnt/* /data/sys/
-    else
-        echo "/data/sys space is little than OS file"
-        exit
-    fi
+    cp -a /mnt/* /data/sys/
 
     if [ `rpm -qa|grep nfs|wc -l` = 0 ]
     then
