@@ -17,6 +17,7 @@ rootness(){
 install_nfs(){
     [ ! -d /data/sys ] && mkdir -p /data/sys/
     mount /dev/cdrom /mnt/
+    echo -e "\033[33mThis process lastest a few minutes,please wait for a moment.\033[0m"
     cp -a /mnt/* /data/sys/
 
     if [ `rpm -qa|grep nfs|wc -l` = 0 ]
@@ -52,10 +53,10 @@ install_tftp(){
 #pxe bootstrap
 install_boot(){
     [ ! -f /usr/share/syslinx/pxelinux.0 ] && yum install -y syslinux
-    Bootpath= `grep  "server_args" /etc/xinetd.d/tftp |awk -F "-s" '{print $2}'`
-    cp /usr/share/syslinux/pxelinux.0 $Bootpath
-    cp /mnt/images/pxeboot/vmlinuz  $Bootpath
-    cp /mnt/images/pxeboot/initrd.img  $Bootpath
+    Bootpath=/var/lib/tftpboot
+    cp /usr/share/syslinux/pxelinux.0 $Bootpath/
+    cp /mnt/images/pxeboot/vmlinuz  $Bootpath/
+    cp /mnt/images/pxeboot/initrd.img  $Bootpath/
     cd $Bootpath
     mkdir -p pxelinux.cfg
     cp /mnt/isolinux/isolinux.cfg  $Bootpath/pxelinux.cfg/default
@@ -71,9 +72,9 @@ cat >/etc/dhcp/dhcpd.conf<<EOF
     log-facility local7;
     subnet 10.0.0.0 netmask 255.255.255.0 {
     range dynamic-bootp 10.0.0.100 10.0.0.200;
-    next-server 10.0.0.4;
+    next-server 10.0.0.5;
     filename "/data/sys/kickstart/ks.cfg";
-    next-server 10.0.0.4;
+    next-server 10.0.0.5;
     filename "/var/lib/tftpboot/pxelinux.0";
     }   
 EOF
@@ -97,7 +98,7 @@ Kisckstart(){
 
 rootness
 install_nfs
-#install_tftp
-#install_boot
-#install_dhcp
-#Kisckstart
+install_tftp
+install_boot
+install_dhcp
+Kisckstart
