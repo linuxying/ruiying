@@ -159,9 +159,8 @@ EOF
 }
 
 #Close unused service
-#注意此处有的是显示英文on，有的显示的是启用
 service_config(){
-for un_service in `chkconfig --list|grep 3:启用|awk '{print $1}'`
+for un_service in `chkconfig --list|grep 3:on|awk '{print $1}'`
 do
     chkconfig ${un_service} off
 done
@@ -173,7 +172,6 @@ done
 
 #other config 
 other_config(){
-#useradd 注意此处test修改为你自己的用户名和密码
 useradd test
 echo "test"|passwd --stdin test && history -c
 echo "test   ALL=(ALL)  NOPASSWD: ALL">>/etc/sudoers
