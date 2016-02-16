@@ -6,6 +6,7 @@
  
  4.process.sh 是打印进度条脚本
 
+ 5.distribute.sh 是简单批量分发文件的脚本，iplist是ip地址列表
 
 
 规范：
