@@ -20,7 +20,7 @@ label linux
   menu label ^Install or upgrade an existing system
   menu default
   kernel vmlinuz
-  append ks=nfs:10.0.0.4:/data/sys/kickstart/ks.cfg  initrd=initrd.img
+  append ks=nfs:10.0.0.4:/data/sys/kickstart/ks.cfg  initrd=initrd.img ksdevice=eth0
 label vesa
   menu label Install system with ^basic video driver
   kernel vmlinuz
