@@ -59,7 +59,14 @@ install_boot(){
     cp /mnt/images/pxeboot/initrd.img  $Bootpath/
     cd $Bootpath
     mkdir -p pxelinux.cfg
-    cp /mnt/isolinux/isolinux.cfg  $Bootpath/pxelinux.cfg/default
+    wget https://github.com/linuxying/ruiying/archive/master.zip
+    unzip master.zip
+    cd ruiying-master
+    mkdir /data/sys/kickstart
+    cp ks.cfg /data/sys/kickstart/ks.cfg
+    chmod 644 /data/sys/kickstart/ks.cfg 
+    cp default $Bootpath/pxelinux.cfg/default
+    
 }
 
 #install dhcp
@@ -84,17 +91,6 @@ EOF
 }
 
 
-#4.5 kisckstart
-#config kisckstart
-Kisckstart(){
-    wget https://github.com/linuxying/ruiying/archive/master.zip
-    unzip master.zip
-    cd ruiying-master
-    mkdir /data/sys/kickstart
-    cp ks.cfg /data/sys/kickstart/ks.cfg
-    chmod 644 /data/sys/kickstart/ks.cfg 
-}
-
 Restart(){
   /etc/init.d/rpcbind restart
   /etc/init.d/nfs restart
@@ -108,7 +104,6 @@ main(){
     install_tftp
     install_boot
     install_dhcp
-    Kisckstart
     Restart
 }
 
