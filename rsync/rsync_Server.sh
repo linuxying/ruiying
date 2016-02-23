@@ -3,9 +3,7 @@
 
 
 User=`whoami`
-if [ $User = 'root' ];then
-    echo "Welcome run this scripts!"
-else
+if [ $User != 'root' ];then
     echo "must be run this scripts as root£¡"
     exit
 fi
