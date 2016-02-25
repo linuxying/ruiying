@@ -1,7 +1,5 @@
 #!/bin/sh
 #author:linuxliu
-#mail:linuxliu_ry
-
 
 #check user
 if [ "`whoami`" != root ]
@@ -36,7 +34,7 @@ Release=`cat /etc/redhat-release |awk  '{print $1}'`
 
 if [ $Version != '6' -o $Release != 'CentOS' ]
 then
-    echo -e "\033[33mThis script can only run on CentOS.\033[0m"
+    echo -e "\033[33mThis script can only run on CentOS6.X.\033[0m"
     exit
 fi
 
@@ -69,7 +67,7 @@ rpm -Uvh http://packages.sw.be/rpmforge-release/rpmforge-release-0.5.2-2.el6.rf.
 rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-rpmforge-dag
  
 #update the system
-yum clean all && yum makecache
+#yum clean all && yum makecache
 yum -y update glibc\*
 yum -y update yum\* rpm\* python\* 
 yum -y update

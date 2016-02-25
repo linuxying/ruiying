@@ -106,12 +106,13 @@ function install_apache(){
         echo -e "\033[32mapache install success.\033[0m"
 	sleep 5
     fi
+    ln -s /application/$apacheVersion  /application/apache
 }
 
 function run_apache(){
-#    Download_file
-    install_apr
-    install_aprutil
+    #Download_file
+    #install_apr
+    #install_aprutil
     install_pcre
     install_apache
 }
