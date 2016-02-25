@@ -8,6 +8,10 @@
 
  5.distribute.sh 是简单批量分发文件的脚本，iplist是ip地址列表
 
+ 6.lamp 是安装lamp 的脚本文件
+
+ 7. .vimrc 是配置vim的文件具体使用方法可以参考作者，地址:github.com/ma6174/vim.git
+
 
 配置规范：
 
