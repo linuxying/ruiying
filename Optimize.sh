@@ -131,11 +131,7 @@ EOF
 #chage i18n
 i18n_config(){
 cat >/etc/sysconfig/i18n <<EOF
-#LANG="en_US.UTF-8"
-#SYSFONT="latarcyrheb-sun16"
-LANG="zh_CN.GB2312"
-SUPPORTED="zh_CN.UTF-8:zh_CN:zh:en_US.UTF-8:en_us:en"
-SYSFONT="latarcyrheb-sun16"
+LANG="zh_CN.UTF-8"
 EOF
 }
 
