@@ -24,7 +24,7 @@ echo "#  3.       PHPv3=php-5.4.45               #"
 echo "#  4.       PHPv4=php-5.3.29               #"
 echo "############################################"
 read -p "Please input number(default 1):" Num
-[ -z '$Num' ] && $Num=1
+[ -z "$Num" ] && Num=1
 case $Num in 
     1|2|3|4)
 	echo "You choose is $Num."
@@ -34,11 +34,6 @@ case $Num in
 	echo "Error:Please input {1|2|3|4}"
 esac
 done
-
-
-
-
-
 
 #Download  php
 function Download_php(){

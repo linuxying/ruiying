@@ -21,7 +21,7 @@ echo -e "\033[32mPlease choose a version of the PHP:\033[0m"
 echo -e "\t\033[32m1.Install $MysqlVersion\033[0m"
 echo -e "\t\033[32m2.Install $MysqlVersion1\033[0m"
 read -p "Please input you choice:(Default:2):" Mysql_Version
-[ -z '$Mysql_Version' ] && Mysql_Version=3
+[ -z "$Mysql_Version" ] && Mysql_Version=3
 case $Mysql_Version in
     1|2)
     echo "You choose = $Mysql_Version"
