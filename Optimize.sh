@@ -70,7 +70,7 @@ rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-rpmforge-dag
 #yum clean all && yum makecache
 yum -y update glibc\*
 yum -y update yum\* rpm\* python\* 
-yum -y update
+#yum -y update
 yum install -y lrzsz tree dos2unix
 echo -e "\033[32m yum update ok \033[0m"
 sleep 1

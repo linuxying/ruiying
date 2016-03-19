@@ -11,7 +11,8 @@ pcreVersion='pcre-8.38'
 Toolsdir=/home/test/tools
 
 
-
+mkdir /app/logs -p
+mkdir /application 
 User=`whoami`
 if [ $User != 'root' ];then
     echo "must be run this scripts as root£¡"
@@ -110,9 +111,9 @@ function install_apache(){
 }
 
 function run_apache(){
-    #Download_file
-    #install_apr
-    #install_aprutil
+    Download_file
+    install_apr
+    install_aprutil
     install_pcre
     install_apache
 }
