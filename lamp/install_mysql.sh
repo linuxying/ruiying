@@ -5,7 +5,7 @@ MysqlVersion1=mysql-5.6.29
 Toolsdir=/home/test/tools
 Installdir=/application
 Logdir=/app/logs
-Port=3306
+PORT=3306
 Datadir=/data/$Port/data
 Confdir=/data/$Port
 
@@ -119,18 +119,53 @@ function install_mysql(){
         ln -s $Installdir/${MysqlVersion1} $Installdir/mysql 
         cp  support-files/my-small.cnf  $Confdir
 	fi
-#    chmod +w  $Installdir
-#    chown -R mysql.mysql $Installdir
-#    cd support-files/
-#    cp -f $cur_dir/conf/my.cnf /etc/my.cnf
-#    # Set MySQL configuration file
-#    set_database_conf
-#    cp -f mysql.server /etc/init.d/mysqld
-#    sed -i "s:^datadir=.*:datadir=$datalocation:g" /etc/init.d/mysqld
-#    /usr/local/mysql/scripts/mysql_install_db --defaults-file=/etc/my.cnf --basedir=/usr/local/mysql --datadir=$datalocation --user=mysql
-#    chmod +x /etc/init.d/mysqld
-#    chkconfig --add mysqld
-#    chkconfig  mysqld on
    
 }    
-install_mysql
+
+
+function Confmysql(){
+    echo "#################my.cnf#####################"
+    cat > Confdir/my.cnf <<EOF
+    [client]
+    Port= $PORT
+    socket= $Confdir/mysql.sock
+    [mysql]
+    no-auto-rehash
+    [mysqld]
+    useradd= mysql
+    Port= $PORT
+    socket= $Confdir/mysql.sock
+    basedir= $Installdir/mysql
+    Datadir= $Datadir
+    skip-external-locking
+    key_buffer_size = 16K
+    max_allowed_packet = 1M
+    table_open_cache = 4
+    sort_buffer_size = 64K
+    read_buffer_size = 256K
+    read_rnd_buffer_size = 256K
+    net_buffer_length = 2K
+    thread_stack = 128K
+    server-id= 1
+    log-error = $Confdir/mysql3306.err
+    pid-file = $Confdir/mysqld.pid
+    log-bin = $Confdir/mysql-bin
+    relay-log = $Confdir/relay-bin
+    relay-log-info-file = $Confdir/relay-log.info
+    [mysqldump]
+    quick
+    max_allowed_packet = 16M
+    [mysql]
+    no-auto-rehash
+    [myisamchk]
+    key_buffer_size = 8M
+    sort_buffer_size = 8M
+    [mysqlhotcopy]
+    interactive-timeout
+EOF
+    chown -R mysql.mysql $Confdir
+    chmod 700 $Confdir
+    echo 'export PATH=$PATH:/application/mysql/bin ' >>/etc/profile 
+    . /etc/profile 
+}
+

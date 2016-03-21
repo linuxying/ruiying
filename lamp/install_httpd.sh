@@ -9,7 +9,7 @@ aprutilVersion='apr-util-1.5.4'
 pcreVersion='pcre-8.38'
 #tools dir
 Toolsdir=/home/test/tools
-
+Confdir=/application/apache/conf 
 
 mkdir /app/logs -p
 mkdir /application 
@@ -110,13 +110,46 @@ function install_apache(){
     ln -s /application/$apacheVersion  /application/apache
 }
 
+function Confapache(){
+    sed -i  "s/#Include conf\/extra\/httpd\-vhosts\.conf/Include conf\/extra\/httpd\-vhosts\.conf/g" $Confdir/httpd.conf
+    cp -f $Confdir/httpd.conf $Confdir/httpd.conf.backup
+    cp -f $Confdir/extra/httpd-vhosts.conf $Confdir/extra/httpd-vhosts.conf.backup
+    sed -i  "s/User daemon/User apache/g" $Confdir/httpd.conf
+    sed -i  "s/Group daemon/Group apache/g" $Confdir/httpd.conf
+    sed -i "s/#ServerName www.example.com:80/ServerName 127.0.0.1:80/g" $Confdir/httpd.conf
+    sed -i '\/AddType application\/x-compress \.Z/a AddType application\/x-httpd-php \.php \.php3' $Confdir/httpd.conf
+    sed -i '\/AddType application\/x-compress \.Z/a AddType application\/x-httpd-php-source \.phps' $Confdir/httpd.conf
+    sed -i  's/DirectoryIndex index.html/DirectoryIndex index.html index.php/g' $Confdir/httpd.conf
+    mkdir /data/www/www -p
+    useradd -s /sbin/nologin -M apache
+    chown -R apache.apache /data/www/
+
+
+    cat >$Confdir/extra/httpd-vhosts.conf <<EOF
+    <VirtualHost *:80>
+        ServerAdmin 512331228@qq.com 
+        DocumentRoot "/data/www/www"
+        ServerName www.liuruiying.com
+        ServerAlias wwwapache01.liuruiying.com
+        ErrorLog "/app/logs/wwwapache01.liuruiying.com-error_log"
+        #CustomLog "|/usr/local/sbin/cronolog /app/logs/access_www_%Y%m%d.log" combined
+        CustomLog "/app/logs/access_www_%Y%m%d.log" common
+    </VirtualHost>
+
+    <Directory "/data/www">
+        AllowOverride None
+        Options None
+        Require all granted
+    </Directory>
+EOF
+}
+
+
 function run_apache(){
     Download_file
     install_apr
     install_aprutil
     install_pcre
     install_apache
+    Confapache
 }
-
-
-run_apache
