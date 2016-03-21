@@ -12,6 +12,11 @@ Confdir=/data/$Port
 #yum install software
 yum install -y  ncurses-devel autoconfig automake gcc gcc-c++ cmake
 
+
+#mkdir
+mkdir $Datadir -p
+
+
 #mysql version choose
 while true
 do
@@ -125,7 +130,7 @@ function install_mysql(){
 
 function Confmysql(){
     echo "#################my.cnf#####################"
-    cat > Confdir/my.cnf <<EOF
+    cat > $Confdir/my.cnf <<EOF
     [client]
     Port= $PORT
     socket= $Confdir/mysql.sock
@@ -169,3 +174,10 @@ EOF
     . /etc/profile 
 }
 
+function Run_mysql(){
+    install_mysql
+    Confmysql
+}
+
+
+Run_mysql

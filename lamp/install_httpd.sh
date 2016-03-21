@@ -34,6 +34,10 @@ function Download_file(){
     if [ $? -ne 0 ];then
         echo "Error:$AprVersion.tar.gz is download false."
     fi
+    [ ! -f $pcreVersion.tar.bz2 ] && wget ftp://ftp.csx.cam.ac.uk/pub/software/programming/pcre/$pcreVersion.tar.bz2
+    if [ $? -ne 0 ];then
+        echo "Error:$pcreVersion.tar.gz is download false."
+    fi
 }
 
 #apr install
@@ -68,7 +72,7 @@ function install_aprutil(){
 
 #pcre install
 function install_pcre(){
-   tar zxf $pcreVersion.tar.gz
+   tar jxf $pcreVersion.tar.bz2
    cd $pcreVersion
    ./configure --prefix=/usr/local/pcre && make && make install >>/app/logs/pcreinstall.log
    if [ $? -ne 0 ];then
@@ -145,7 +149,7 @@ EOF
 }
 
 
-function run_apache(){
+function Run_apache(){
     Download_file
     install_apr
     install_aprutil
@@ -153,3 +157,4 @@ function run_apache(){
     install_apache
     Confapache
 }
+Run_apache

@@ -39,7 +39,7 @@ done
 function Download_php(){
     cd $Soft_dir
     if [ $Num == 1 ];then
-	    wget http://mirrors.sohu.com/php/$PHPv1.tar.gz
+            [ ! -f $PHPv1.tar.gz ] && wget http://mirrors.sohu.com/php/$PHPv1.tar.gz
     elif [ $Num == 2 ];then
 	    wget http://mirrors.sohu.com/php/$PHPv2.tar.gz
 	elif [ $Num == 3 ];then
@@ -54,7 +54,7 @@ function Download_php(){
 
 #Dependent environment 
 function Yum_software(){
-    yum install libmcrypt-devel readline-devel libicu-devel libc-client-devel zlib libxml openldap-devel libxslt-devel libjpeg freetype libpng gd curl zlib-devel libxml2-devel libjpeg-devel freetype-devel libpng-devel gd-devel curl-devel openssl openssl-devel gmp-devel -y
+    yum install bzip2 bzip2-devel libmcrypt-devel readline-devel libicu-devel libc-client-devel zlib libxml openldap-devel libxslt-devel libjpeg freetype libpng gd curl zlib-devel libxml2-devel libjpeg-devel freetype-devel libpng-devel gd-devel curl-devel openssl openssl-devel gmp-devel -y
     cp -frp /usr/lib64/libldap* /usr/lib/
     ln -s /usr/lib64/libc-client.so /usr/lib/libc-client.so
 }
@@ -140,7 +140,7 @@ function Install_php(){
 	    --with-mysql-sock=/tmp/mysql.sock  \
 	    --with-config-file-scan-dir=/application/$PHPv2/php.d  \
 	    --with-mhash=/usr  \
-	    --with-icu-dir=/usr/local  \
+	    --with-icu-dir=/usr \
 	    --with-bz2  \
 	    --with-curl \
 	    --with-freetype-dir \
