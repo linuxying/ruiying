@@ -54,7 +54,7 @@ function Download_php(){
 
 #Dependent environment 
 function Yum_software(){
-    yum install bzip2 bzip2-devel libmcrypt-devel readline-devel libicu-devel libc-client-devel zlib libxml openldap-devel libxslt-devel libjpeg freetype libpng gd curl zlib-devel libxml2-devel libjpeg-devel freetype-devel libpng-devel gd-devel curl-devel openssl openssl-devel gmp-devel -y
+    yum install icu bzip2 bzip2-devel libmcrypt-devel readline-devel libicu-devel libc-client-devel zlib libxml openldap-devel libxslt-devel libjpeg freetype libpng gd curl zlib-devel libxml2-devel libjpeg-devel freetype-devel libpng-devel gd-devel curl-devel openssl openssl-devel gmp-devel -y
     cp -frp /usr/lib64/libldap* /usr/lib/
     ln -s /usr/lib64/libc-client.so /usr/lib/libc-client.so
 }
@@ -76,7 +76,7 @@ function Install_php(){
 	    --with-mysql-sock=/tmp/mysql.sock  \
 	    --with-config-file-scan-dir=/application/$PHPv1/php.d  \
 	    --with-mhash=/usr  \
-	    --with-icu-dir=/usr/local  \
+	    --with-icu-dir=/usr  \
 	    --with-bz2  \
 	    --with-curl \
 	    --with-freetype-dir \

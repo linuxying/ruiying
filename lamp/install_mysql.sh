@@ -130,43 +130,43 @@ function install_mysql(){
 
 function Confmysql(){
     echo "#################my.cnf#####################"
-    cat > $Confdir/my.cnf <<EOF
-    [client]
-    Port= $PORT
-    socket= $Confdir/mysql.sock
-    [mysql]
-    no-auto-rehash
-    [mysqld]
-    useradd= mysql
-    Port= $PORT
-    socket= $Confdir/mysql.sock
-    basedir= $Installdir/mysql
-    Datadir= $Datadir
-    skip-external-locking
-    key_buffer_size = 16K
-    max_allowed_packet = 1M
-    table_open_cache = 4
-    sort_buffer_size = 64K
-    read_buffer_size = 256K
-    read_rnd_buffer_size = 256K
-    net_buffer_length = 2K
-    thread_stack = 128K
-    server-id= 1
-    log-error = $Confdir/mysql3306.err
-    pid-file = $Confdir/mysqld.pid
-    log-bin = $Confdir/mysql-bin
-    relay-log = $Confdir/relay-bin
-    relay-log-info-file = $Confdir/relay-log.info
-    [mysqldump]
-    quick
-    max_allowed_packet = 16M
-    [mysql]
-    no-auto-rehash
-    [myisamchk]
-    key_buffer_size = 8M
-    sort_buffer_size = 8M
-    [mysqlhotcopy]
-    interactive-timeout
+cat > $Confdir/my.cnf <<EOF
+[client]
+Port= $PORT
+socket= $Confdir/mysql.sock
+[mysql]
+no-auto-rehash
+[mysqld]
+useradd= mysql
+Port= $PORT
+socket= $Confdir/mysql.sock
+basedir= $Installdir/mysql
+Datadir= $Datadir
+skip-external-locking
+key_buffer_size = 16K
+max_allowed_packet = 1M
+table_open_cache = 4
+sort_buffer_size = 64K
+read_buffer_size = 256K
+read_rnd_buffer_size = 256K
+net_buffer_length = 2K
+thread_stack = 128K
+server-id= 1
+log-error = $Confdir/mysql3306.err
+pid-file = $Confdir/mysqld.pid
+log-bin = $Confdir/mysql-bin
+relay-log = $Confdir/relay-bin
+relay-log-info-file = $Confdir/relay-log.info
+[mysqldump]
+quick
+max_allowed_packet = 16M
+[mysql]
+no-auto-rehash
+[myisamchk]
+key_buffer_size = 8M
+sort_buffer_size = 8M
+[mysqlhotcopy]
+interactive-timeout
 EOF
     chown -R mysql.mysql $Confdir
     chmod 700 $Confdir
