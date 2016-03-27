@@ -132,16 +132,16 @@ function Confmysql(){
     echo "#################my.cnf#####################"
 cat > $Confdir/my.cnf <<EOF
 [client]
-Port= $PORT
+port= $PORT
 socket= $Confdir/mysql.sock
 [mysql]
 no-auto-rehash
 [mysqld]
-useradd= mysql
-Port= $PORT
+user= mysql
+port= $PORT
 socket= $Confdir/mysql.sock
 basedir= $Installdir/mysql
-Datadir= $Datadir
+datadir= $Datadir
 skip-external-locking
 key_buffer_size = 16K
 max_allowed_packet = 1M
