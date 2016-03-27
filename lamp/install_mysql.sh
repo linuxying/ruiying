@@ -6,8 +6,8 @@ Toolsdir=/home/test/tools
 Installdir=/application
 Logdir=/app/logs
 PORT=3306
-Datadir=/data/$Port/data
-Confdir=/data/$Port
+Datadir=/data/$PORT/data
+Confdir=/data/$PORT
 
 #yum install software
 yum install -y  ncurses-devel autoconfig automake gcc gcc-c++ cmake
