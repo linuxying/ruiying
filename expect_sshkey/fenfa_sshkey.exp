@@ -1,0 +1,20 @@
+#!/usr/bin/expect 
+
+if { $argc != 2 } {
+    send_user "Usage:expect scp-expect file host\n"
+    exit
+}
+
+set file [ lindex $argv 0 ]
+set host [ lindex $argv 1 ]
+set password "test"
+spawn ssh-copy-id -i $file "-p52113 test@$host"
+expect {
+    "yes/no" {send "yes\r";exp_continue}
+    "*password" {send "$password\r"}
+}
+expect eof
+exit
+#exit -onexit {
+#    send_user "test say good bye to you\n"
+#}
