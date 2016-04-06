@@ -6,8 +6,8 @@ Toolsdir=/home/test/tools
 Installdir=/application
 Logdir=/app/logs
 PORT=3306
-Datadir=/data/$Port/data
-Confdir=/data/$Port
+Datadir=/data/$PORT/data
+Confdir=/data/$PORT
 
 #yum install software
 yum install -y  ncurses-devel autoconfig automake gcc gcc-c++ cmake
@@ -132,16 +132,16 @@ function Confmysql(){
     echo "#################my.cnf#####################"
 cat > $Confdir/my.cnf <<EOF
 [client]
-Port= $PORT
+port= $PORT
 socket= $Confdir/mysql.sock
 [mysql]
 no-auto-rehash
 [mysqld]
-useradd= mysql
-Port= $PORT
+user= mysql
+port= $PORT
 socket= $Confdir/mysql.sock
 basedir= $Installdir/mysql
-Datadir= $Datadir
+datadir= $Datadir
 skip-external-locking
 key_buffer_size = 16K
 max_allowed_packet = 1M
