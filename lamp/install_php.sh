@@ -76,7 +76,7 @@ function Install_php(){
 	    --with-mysql-sock=/tmp/mysql.sock  \
 	    --with-config-file-scan-dir=/application/$PHPv1/php.d  \
 	    --with-mhash=/usr  \
-	    --with-icu-dir=/usr/bin  \
+	    --with-icu-dir=/usr  \
 	    --with-bz2  \
 	    --with-curl \
 	    --with-freetype-dir \
@@ -141,7 +141,7 @@ function Install_php(){
 	    --with-mysql-sock=/tmp/mysql.sock  \
 	    --with-config-file-scan-dir=/application/$PHPv2/php.d  \
 	    --with-mhash=/usr  \
-	    --with-icu-dir=/usr/bin  \
+	    --with-icu-dir=/usr  \
 	    --with-bz2  \
 	    --with-curl \
 	    --with-freetype-dir \
@@ -206,7 +206,7 @@ function Install_php(){
 	    --with-mysql-sock=/tmp/mysql.sock  \
 	    --with-config-file-scan-dir=/application/$PHPv3/php.d  \
 	    --with-mhash=/usr  \
-	    --with-icu-dir=/usr/bin  \
+	    --with-icu-dir=/usr  \
 	    --with-bz2  \
 	    --with-curl \
 	    --with-freetype-dir \
@@ -271,7 +271,7 @@ function Install_php(){
 	    --with-mysql-sock=/tmp/mysql.sock  \
 	    --with-config-file-scan-dir=/application/$PHPv4/php.d  \
 	    --with-mhash=/usr  \
-	    --with-icu-dir=/usr/bin  \
+	    --with-icu-dir=/usr  \
 	    --with-bz2  \
 	    --with-curl \
 	    --with-freetype-dir \
