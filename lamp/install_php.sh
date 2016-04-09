@@ -39,7 +39,7 @@ done
 function Download_php(){
     cd $Soft_dir
     if [ $Num == 1 ];then
-            [ ! -f $PHPv1.tar.gz ] && wget http://mirrors.sohu.com/php/$PHPv1.tar.gz
+	    wget http://mirrors.sohu.com/php/$PHPv1.tar.gz
     elif [ $Num == 2 ];then
 	    wget http://mirrors.sohu.com/php/$PHPv2.tar.gz
 	elif [ $Num == 3 ];then
@@ -54,7 +54,7 @@ function Download_php(){
 
 #Dependent environment 
 function Yum_software(){
-    yum install icu bzip2 bzip2-devel libmcrypt-devel readline-devel libicu-devel libc-client-devel zlib libxml openldap-devel libxslt-devel libjpeg freetype libpng gd curl zlib-devel libxml2-devel libjpeg-devel freetype-devel libpng-devel gd-devel curl-devel openssl openssl-devel gmp-devel -y
+    yum install libmcrypt-devel readline-devel libicu-devel libc-client-devel zlib libxml openldap-devel libxslt-devel libjpeg freetype libpng gd curl zlib-devel libxml2-devel libjpeg-devel freetype-devel libpng-devel gd-devel curl-devel openssl openssl-devel gmp-devel -y
     cp -frp /usr/lib64/libldap* /usr/lib/
     ln -s /usr/lib64/libc-client.so /usr/lib/libc-client.so
 }
@@ -76,7 +76,7 @@ function Install_php(){
 	    --with-mysql-sock=/tmp/mysql.sock  \
 	    --with-config-file-scan-dir=/application/$PHPv1/php.d  \
 	    --with-mhash=/usr  \
-	    --with-icu-dir=/usr  \
+	    --with-icu-dir=/usr/local  \
 	    --with-bz2  \
 	    --with-curl \
 	    --with-freetype-dir \
@@ -123,8 +123,9 @@ function Install_php(){
 		    echo "$PHPv1 install success."
 		else
 		    echo "error"
+            exit
 		fi
-		ln -s /application/$PHPv1/ /application/php
+		ln -s /application/$PHPv1 /application/php
         cp -ap php.ini-production /application/php/lib/php.ini
      elif [ $Num == 2 ];then
 	    tar zxf $PHPv2.tar.gz
@@ -140,7 +141,7 @@ function Install_php(){
 	    --with-mysql-sock=/tmp/mysql.sock  \
 	    --with-config-file-scan-dir=/application/$PHPv2/php.d  \
 	    --with-mhash=/usr  \
-	    --with-icu-dir=/usr \
+	    --with-icu-dir=/usr/local  \
 	    --with-bz2  \
 	    --with-curl \
 	    --with-freetype-dir \
@@ -187,6 +188,7 @@ function Install_php(){
 		    echo "$PHPv2 install success."
 		else
 		    echo "error"
+            exit
 		fi
 		ln -s /application/$PHPv2/ /application/php
         cp -ap php.ini-production /application/php/lib/php.ini
@@ -251,6 +253,7 @@ function Install_php(){
 		    echo "$PHPv3 install success."
 		else
 		    echo "error"
+            exit
 		fi
 		ln -s /application/$PHPv3/ /application/php
         cp -ap php.ini-production /application/php/lib/php.ini
@@ -315,6 +318,7 @@ function Install_php(){
 		    echo "$PHPv4 install success."
 		else
 		    echo "error"
+            exit
 		fi
 		ln -s /application/$PHPv4/ /application/php
         cp -ap php.ini-production /application/php/lib/php.ini
