@@ -39,17 +39,17 @@ done
 function Download_php(){
     cd $Soft_dir
     if [ $Num == 1 ];then
-	    wget http://mirrors.sohu.com/php/$PHPv1.tar.gz
+        [ ! -f $PHPv1.tar.gz ] && wget http://mirrors.sohu.com/php/$PHPv1.tar.gz
     elif [ $Num == 2 ];then
-	    wget http://mirrors.sohu.com/php/$PHPv2.tar.gz
-	elif [ $Num == 3 ];then
-	    wget http://mirrors.sohu.com/php/$PHPv3.tar.gz
-	else
-	    wget http://mirrors.sohu.com/php/$PHPv4.tar.gz
+        [ ! -f $PHPv2.tar.gz ] && wget http://mirrors.sohu.com/php/$PHPv2.tar.gz
+    elif [ $Num == 3 ];then
+        [ ! -f $PHPv3.tar.gz ] && wget http://mirrors.sohu.com/php/$PHPv3.tar.gz
+    else
+        [ ! -f $PHPv4.tar.gz ] && wget http://mirrors.sohu.com/php/$PHPv4.tar.gz
     fi
-	if [ $? -eq 0 ];then
-	    echo "Download_php success."
-	fi
+    if [ $? -eq 0 ];then
+        echo "Download_php success."
+    fi
 }
 
 #Dependent environment 
@@ -76,7 +76,7 @@ function Install_php(){
 	    --with-mysql-sock=/tmp/mysql.sock  \
 	    --with-config-file-scan-dir=/application/$PHPv1/php.d  \
 	    --with-mhash=/usr  \
-	    --with-icu-dir=/usr/local  \
+	    --with-icu-dir=/usr/bin  \
 	    --with-bz2  \
 	    --with-curl \
 	    --with-freetype-dir \
@@ -141,7 +141,7 @@ function Install_php(){
 	    --with-mysql-sock=/tmp/mysql.sock  \
 	    --with-config-file-scan-dir=/application/$PHPv2/php.d  \
 	    --with-mhash=/usr  \
-	    --with-icu-dir=/usr/local  \
+	    --with-icu-dir=/usr/bin  \
 	    --with-bz2  \
 	    --with-curl \
 	    --with-freetype-dir \
@@ -206,7 +206,7 @@ function Install_php(){
 	    --with-mysql-sock=/tmp/mysql.sock  \
 	    --with-config-file-scan-dir=/application/$PHPv3/php.d  \
 	    --with-mhash=/usr  \
-	    --with-icu-dir=/usr/local  \
+	    --with-icu-dir=/usr/bin  \
 	    --with-bz2  \
 	    --with-curl \
 	    --with-freetype-dir \
@@ -271,7 +271,7 @@ function Install_php(){
 	    --with-mysql-sock=/tmp/mysql.sock  \
 	    --with-config-file-scan-dir=/application/$PHPv4/php.d  \
 	    --with-mhash=/usr  \
-	    --with-icu-dir=/usr/local  \
+	    --with-icu-dir=/usr/bin  \
 	    --with-bz2  \
 	    --with-curl \
 	    --with-freetype-dir \
