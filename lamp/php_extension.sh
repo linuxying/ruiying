@@ -1,11 +1,7 @@
-******************************************************
-* Author : Linuxliu
-* Email : 512331228@qq.com
-* Last modified :2016-05-06 11:34
-* Filename :php_extension.sh
-* Description :Install php extensions
-******************************************************
+#!/bin/sh
+
 Tools=/home/test/tools
+
 Php_path=/application/php
 Mysql_path=/application/mysql
 
@@ -35,26 +31,26 @@ function Install_exten(){
     cd ..
     
     #安装eaccelerator php加速
-    tar zxf  eaccelerator-eaccelerator-42067ac.tar.gz 
-    cd eaccelerator-eaccelerator-42067ac/
-    $Php_path/bin/phpize
-    ./configure --enable-eaccelerator=shared  --with-php-config=$Php_path/bin/php-config
-    make && make install
-    if [ $? -ne 0 ];then
-        echo "Install memcache failed. Please check log."
-        exit
-    fi
-    cd ..
+    #tar zxf  eaccelerator-eaccelerator-42067ac.tar.gz 
+    #cd eaccelerator-eaccelerator-42067ac/
+    #$Php_path/bin/phpize
+    #./configure --enable-eaccelerator=shared  --with-php-config=$Php_path/bin/php-config
+    #make && make install
+    #if [ $? -ne 0 ];then
+    #    echo "Install eaccelerator failed. Please check log."
+    #    exit
+    #fi
+    #cd ..
 
     #安装PDO_MYSQL(数据库连接的支持)
-    tar zxvf PDO_MYSQL-1.0.2.tgz
+    tar zxf PDO_MYSQL-1.0.2.tgz
     cd PDO_MYSQL-1.0.2/
     $Php_path/bin/phpize
-    ./configure --with-php-config=$Php_path/bin/php-config
-    with-pdo-mysql=$Mysql_path
+    ./configure --with-php-config=$Php_path/bin/php-config --with-pdo-mysql=$Mysql_path
+    ln -s /application/mysql/include/* /usr/local/include/
     make && make install
     if [ $? -ne 0 ];then
-        echo "Install memcache failed. Please check log."
+        echo "Install PDO-MYSQL failed. Please check log."
         exit
     fi
     cd ..
@@ -65,7 +61,7 @@ function Install_exten(){
     ./configure
     make && make install
     if [ $? -ne 0 ];then
-        echo "Install memcache failed. Please check log."
+        echo "Install ImageMagick failed. Please check log."
         exit
     fi
     cd ..
@@ -77,7 +73,7 @@ function Install_exten(){
     ./configure --with-php-config=$Php_path/bin/php-config
     make && make install
     if [ $? -ne 0 ];then
-        echo "Install memcache failed. Please check log."
+        echo "Install imagick failed. Please check log."
         exit
     fi
     cd ..
@@ -89,3 +85,5 @@ function Run(){
     Install_exten
 }
 
+
+Run

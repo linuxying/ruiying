@@ -1,7 +1,11 @@
+******************************************************
+* Author : Linuxliu
+* Email : 512331228@qq.com
+* Last modified :2016-05-06 19:23
+* Filename :php_lib.sh
+* Description :
+******************************************************
 #!/bin/sh
-#by linuxliu
-#mail:512331228@qq.com
-#Version 1.0 2016.05.06
 #编译安装PHP所需的支持库：
 
 Tools=/home/test/tools

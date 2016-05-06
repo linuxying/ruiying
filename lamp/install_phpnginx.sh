@@ -119,7 +119,8 @@ function Install_php(){
             --enable-fpm \
             --enable-fastcgi \
 	    --enable-zip
-		make && make install
+		make ZEND_EXTRA_LIBS='-liconv'
+		make install
 		if [ $? -eq 0 ];then
 		    echo "$PHPv1 install success."
 		else
@@ -185,7 +186,8 @@ function Install_php(){
             --enable-fpm  \
             --enable-fastcgi  \
 	    --enable-zip
-		make && make install
+		make ZEND_EXTRA_LIBS='-liconv'
+		make install
 		if [ $? -eq 0 ];then
 		    echo "$PHPv2 install success."
 		else
@@ -251,7 +253,8 @@ function Install_php(){
 	    --enable-fpm  \
 	    --enable-fastcgi  \
 	    --enable-zip
-		make && make install
+		make ZEND_EXTRA_LIBS='-liconv'
+		make install
 		if [ $? -eq 0 ];then
 		    echo "$PHPv3 install success."
 		else
@@ -317,7 +320,8 @@ function Install_php(){
 	    --enable-fpm  \
 	    --enable-fastcgi  \
 	    --enable-zip
-		make && make install
+		make ZEND_EXTRA_LIBS='-liconv'
+		make install
 		if [ $? -eq 0 ];then
 		    echo "$PHPv4 install success."
 		else
